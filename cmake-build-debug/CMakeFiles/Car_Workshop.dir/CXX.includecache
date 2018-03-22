@@ -1,0 +1,50 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ashar/CLionProjects/Car Workshop/main.cpp
+iostream
+-
+reader.h
+/home/ashar/CLionProjects/Car Workshop/reader.h
+writer.h
+/home/ashar/CLionProjects/Car Workshop/writer.h
+reader.cpp
+/home/ashar/CLionProjects/Car Workshop/reader.cpp
+writer.cpp
+/home/ashar/CLionProjects/Car Workshop/writer.cpp
+
+/home/ashar/CLionProjects/Car Workshop/reader.cpp
+reader.h
+/home/ashar/CLionProjects/Car Workshop/reader.h
+cstring
+-
+iostream
+-
+
+/home/ashar/CLionProjects/Car Workshop/reader.h
+fstream
+-
+vector
+-
+string
+-
+
+/home/ashar/CLionProjects/Car Workshop/writer.cpp
+cstring
+-
+writer.h
+/home/ashar/CLionProjects/Car Workshop/writer.h
+
+/home/ashar/CLionProjects/Car Workshop/writer.h
+iostream
+-
+fstream
+-
+vector
+-
+

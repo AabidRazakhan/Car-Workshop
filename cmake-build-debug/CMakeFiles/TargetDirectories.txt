@@ -1,0 +1,3 @@
+/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir
