@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Car_Workshop.dir/main.cpp.o"
   "CMakeFiles/Car_Workshop.dir/writer.cpp.o"
   "CMakeFiles/Car_Workshop.dir/reader.cpp.o"
+  "CMakeFiles/Car_Workshop.dir/datetime.cpp.o"
   "Car_Workshop.pdb"
   "Car_Workshop"
 )

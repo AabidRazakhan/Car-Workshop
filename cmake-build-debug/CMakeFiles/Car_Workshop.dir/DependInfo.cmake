@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ashar/CLionProjects/Car Workshop/datetime.cpp" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/datetime.cpp.o"
   "/home/ashar/CLionProjects/Car Workshop/main.cpp" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/main.cpp.o"
   "/home/ashar/CLionProjects/Car Workshop/reader.cpp" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/reader.cpp.o"
   "/home/ashar/CLionProjects/Car Workshop/writer.cpp" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/writer.cpp.o"

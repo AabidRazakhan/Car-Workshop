@@ -43,6 +43,7 @@
 #include<fstream>
 #include<vector>
 #include<string>
+#include <cwchar>
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
@@ -58,8 +59,9 @@ class reader {
   void initiate() throw();
 
  public:
+  reader() = delete;
   explicit reader(std::string file_name, bool bin = false) throw();
-  std::fpos<mbstate_t> tell();
+  long long tell();
   void seek_to(int off, std::ios::seekdir type) throw();
   T read() throw();
   T read(int pos) throw();

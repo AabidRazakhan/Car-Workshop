@@ -63,12 +63,13 @@ class writer {
   bool file_exist_check_fail();
 
  public:
+  writer() = delete;
   explicit writer(std::string file_name,
                   re_write_mode mode,
                   bool bin = false) throw(); //writes to existing file in any mode
   explicit writer(std::string file_name,
                   bool bin = false) throw(); // creates a new file always and clear and rewrites its contents
-  std::fpos<mbstate_t> tell();
+  long long tell();
   void write(T &obj, bool move_next_line = false) throw();
   void replace_write(T &obj, int pos) throw();
   void seek_to(int off, std::ios::seekdir type) throw();

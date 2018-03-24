@@ -42,7 +42,7 @@ void reader<T>::initiate() throw() {
 }
 
 template<class T>
-std::fpos<mbstate_t> reader<T>::tell() {
+long long reader<T>::tell() {
   return this->st.tellg();
 }
 
@@ -66,7 +66,7 @@ T reader<T>::read() throw() {
     st.getline(r, 800, '\n');
     std::string c(r);
     delete r;
-    return c;
+    return T(c);
   }
 }
 
@@ -81,21 +81,21 @@ T reader<T>::read(int pos) throw(){
     return res;
   } else {
 
-    long long prev_point = st.tellg();
-    st.seekg(pos);
+    long prev_point = st.tellg();
+    st.seekg(pos,std::ios::beg);
 
     auto *res = new char[800];
     st.getline(res, 800, '\n');
     std::string v(res);
     delete res;
-    st.seekg(prev_point);
+    st.seekg(prev_point,std::ios::beg);
     return (T)v;
   }
 }
 
 template<class T>
 void reader<T>::read_all(std::vector<T> &out) throw() {
-  long long prev = st.tellg();
+  long prev = st.tellg();
   if (isbinary) {
     st.seekg(0, std::ios::beg);
     T o;
@@ -103,7 +103,7 @@ void reader<T>::read_all(std::vector<T> &out) throw() {
       st.read(reinterpret_cast<char *>(&o), sizeof(T));
       out.push_back(o);
     }
-    st.seekg(prev);
+    st.seekg(prev,std::ios::beg);
   } else {
     st.seekg(0, std::ios::beg);
     std::string res;

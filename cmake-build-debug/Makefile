@@ -123,6 +123,33 @@ Car_Workshop/fast:
 	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/build
 .PHONY : Car_Workshop/fast
 
+datetime.o: datetime.cpp.o
+
+.PHONY : datetime.o
+
+# target to build an object file
+datetime.cpp.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cpp.o
+.PHONY : datetime.cpp.o
+
+datetime.i: datetime.cpp.i
+
+.PHONY : datetime.i
+
+# target to preprocess a source file
+datetime.cpp.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cpp.i
+.PHONY : datetime.cpp.i
+
+datetime.s: datetime.cpp.s
+
+.PHONY : datetime.s
+
+# target to generate assembly for a file
+datetime.cpp.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cpp.s
+.PHONY : datetime.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -213,6 +240,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Car_Workshop"
+	@echo "... datetime.o"
+	@echo "... datetime.i"
+	@echo "... datetime.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

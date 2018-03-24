@@ -27,7 +27,7 @@ writer<T>::writer(std::string file_name, bool bin) throw() {
 }
 
 template<class T>
-std::fpos<mbstate_t> writer<T>::tell() {
+long long writer<T>::tell() {
   return this->w_stream.tellp();
 }
 
@@ -46,7 +46,7 @@ void file::writer<T>::write(T &obj, bool next_line) throw() {
 
 template<class T>
 void file::writer<T>::replace_write(T &obj, int pos) throw() {
-  std::fpos<mbstate_t> prev_pointer = w_stream.tellp();
+  long long prev_pointer = w_stream.tellp();
   if (isbinary) {
     seek_to(pos, std::ios::beg);
     w_stream.write(reinterpret_cast<char *>(&obj), sizeof(T));
