@@ -17,7 +17,6 @@
 #include <chrono>
 #include <string>
 
-
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
 namespace date {
@@ -28,7 +27,7 @@ class date_time {
   char str_time[21];
  public:
   date_time();
-  date_time(std::string){}; // NOLINT
+  date_time(std::string s) {}; // NOLINT
   //This constructor is required to restore data back from file using reader class
   explicit date_time(int); //just don't create automatically. Safety check
   std::string get_timestamp();
