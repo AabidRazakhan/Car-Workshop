@@ -109,4 +109,69 @@ void date::date_time::set_time(int hour, int min, int sec) {
 void date::date_time::set_str_time(char *k) {
   strcpy(this->str_time, k);
 }
+bool date_time::operator>(date_time other) {
+  if (this->year > other.year)
+    return true;
+  else if (this->month > other.month)
+    return true;
+  else if (this->date > other.date)
+    return true;
+  else if (this->hour > other.hour)
+    return true;
+  else if (this->minute > other.minute)
+    return true;
+  else return this->second > other.second;
+}
+
+date_time &date_time::operator++() {
+  this->date++;
+  return *this;
+}
+bool date_time::operator<(date_time other) {
+  if (this->year < other.year)
+    return true;
+  else if (this->month < other.month)
+    return true;
+  else if (this->date < other.date)
+    return true;
+  else if (this->hour < other.hour)
+    return true;
+  else if (this->minute < other.minute)
+    return true;
+  else return this->second < other.second;
+}
+bool date_time::operator>=(date_time other) {
+  if (this->year >= other.year)
+    return true;
+  else if (this->month >= other.month)
+    return true;
+  else if (this->date >= other.date)
+    return true;
+  else if (this->hour >= other.hour)
+    return true;
+  else if (this->minute >= other.minute)
+    return true;
+  else return this->second >= other.second;
+}
+bool date_time::operator<=(date_time other) {
+  if (this->year <= other.year)
+    return true;
+  else if (this->month <= other.month)
+    return true;
+  else if (this->date <= other.date)
+    return true;
+  else if (this->hour <= other.hour)
+    return true;
+  else if (this->minute <= other.minute)
+    return true;
+  else return this->second <= other.second;
+}
+bool date_time::operator==(date_time other) {
+  return this->second == other.second
+      && this->minute == other.minute
+      && this->hour == other.hour
+      && this->date == other.date
+      && this->month == other.month
+      && this->year == other.year;
+}
 #pragma clang diagnostic pop

@@ -45,6 +45,13 @@ class date_time {
   void set_date(int date, int month, int year);
   void set_time(int hour, int min, int sec);
   void set_str_time(char *n);
+
+  bool operator>(date_time other);
+  bool operator==(date_time other);
+  bool operator<(date_time other);
+  bool operator>=(date_time other);
+  bool operator<=(date_time other);
+  date_time& operator++();
 };
 }
 #pragma clang diagnostic pop
