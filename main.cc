@@ -2,10 +2,8 @@
 
 #include "reader.h"
 #include "writer.h"
-
-#include "reader.cpp"
-#include "writer.cpp"
-#include "datetime.h"
+#include "reader.cc"
+#include "writer.cc"
 
 int main() {
 

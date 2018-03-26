@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/ashar/CLionProjects/Car Workshop/datetime.cpp
+/home/ashar/CLionProjects/Car Workshop/datetime.cc
 datetime.h
 /home/ashar/CLionProjects/Car Workshop/datetime.h
 iomanip
@@ -24,21 +24,23 @@ chrono
 string
 -
 
-/home/ashar/CLionProjects/Car Workshop/main.cpp
+/home/ashar/CLionProjects/Car Workshop/main.cc
 iostream
 -
 reader.h
 /home/ashar/CLionProjects/Car Workshop/reader.h
 writer.h
 /home/ashar/CLionProjects/Car Workshop/writer.h
-reader.cpp
-/home/ashar/CLionProjects/Car Workshop/reader.cpp
-writer.cpp
-/home/ashar/CLionProjects/Car Workshop/writer.cpp
+reader.cc
+/home/ashar/CLionProjects/Car Workshop/reader.cc
+writer.cc
+/home/ashar/CLionProjects/Car Workshop/writer.cc
 datetime.h
 /home/ashar/CLionProjects/Car Workshop/datetime.h
+vehicle.h
+/home/ashar/CLionProjects/Car Workshop/vehicle.h
 
-/home/ashar/CLionProjects/Car Workshop/reader.cpp
+/home/ashar/CLionProjects/Car Workshop/reader.cc
 reader.h
 /home/ashar/CLionProjects/Car Workshop/reader.h
 cstring
@@ -56,7 +58,17 @@ string
 cwchar
 -
 
-/home/ashar/CLionProjects/Car Workshop/writer.cpp
+/home/ashar/CLionProjects/Car Workshop/vehicle.cc
+cstring
+-
+vehicle.h
+/home/ashar/CLionProjects/Car Workshop/vehicle.h
+
+/home/ashar/CLionProjects/Car Workshop/vehicle.h
+string
+-
+
+/home/ashar/CLionProjects/Car Workshop/writer.cc
 cstring
 -
 writer.h

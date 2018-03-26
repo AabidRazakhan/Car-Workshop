@@ -123,113 +123,140 @@ Car_Workshop/fast:
 	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/build
 .PHONY : Car_Workshop/fast
 
-datetime.o: datetime.cpp.o
+datetime.o: datetime.cc.o
 
 .PHONY : datetime.o
 
 # target to build an object file
-datetime.cpp.o:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cpp.o
-.PHONY : datetime.cpp.o
+datetime.cc.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cc.o
+.PHONY : datetime.cc.o
 
-datetime.i: datetime.cpp.i
+datetime.i: datetime.cc.i
 
 .PHONY : datetime.i
 
 # target to preprocess a source file
-datetime.cpp.i:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cpp.i
-.PHONY : datetime.cpp.i
+datetime.cc.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cc.i
+.PHONY : datetime.cc.i
 
-datetime.s: datetime.cpp.s
+datetime.s: datetime.cc.s
 
 .PHONY : datetime.s
 
 # target to generate assembly for a file
-datetime.cpp.s:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cpp.s
-.PHONY : datetime.cpp.s
+datetime.cc.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/datetime.cc.s
+.PHONY : datetime.cc.s
 
-main.o: main.cpp.o
+main.o: main.cc.o
 
 .PHONY : main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/main.cpp.o
-.PHONY : main.cpp.o
+main.cc.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/main.cc.o
+.PHONY : main.cc.o
 
-main.i: main.cpp.i
+main.i: main.cc.i
 
 .PHONY : main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/main.cpp.i
-.PHONY : main.cpp.i
+main.cc.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/main.cc.i
+.PHONY : main.cc.i
 
-main.s: main.cpp.s
+main.s: main.cc.s
 
 .PHONY : main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/main.cpp.s
-.PHONY : main.cpp.s
+main.cc.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/main.cc.s
+.PHONY : main.cc.s
 
-reader.o: reader.cpp.o
+reader.o: reader.cc.o
 
 .PHONY : reader.o
 
 # target to build an object file
-reader.cpp.o:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/reader.cpp.o
-.PHONY : reader.cpp.o
+reader.cc.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/reader.cc.o
+.PHONY : reader.cc.o
 
-reader.i: reader.cpp.i
+reader.i: reader.cc.i
 
 .PHONY : reader.i
 
 # target to preprocess a source file
-reader.cpp.i:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/reader.cpp.i
-.PHONY : reader.cpp.i
+reader.cc.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/reader.cc.i
+.PHONY : reader.cc.i
 
-reader.s: reader.cpp.s
+reader.s: reader.cc.s
 
 .PHONY : reader.s
 
 # target to generate assembly for a file
-reader.cpp.s:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/reader.cpp.s
-.PHONY : reader.cpp.s
+reader.cc.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/reader.cc.s
+.PHONY : reader.cc.s
 
-writer.o: writer.cpp.o
+vehicle.o: vehicle.cc.o
+
+.PHONY : vehicle.o
+
+# target to build an object file
+vehicle.cc.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/vehicle.cc.o
+.PHONY : vehicle.cc.o
+
+vehicle.i: vehicle.cc.i
+
+.PHONY : vehicle.i
+
+# target to preprocess a source file
+vehicle.cc.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/vehicle.cc.i
+.PHONY : vehicle.cc.i
+
+vehicle.s: vehicle.cc.s
+
+.PHONY : vehicle.s
+
+# target to generate assembly for a file
+vehicle.cc.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/vehicle.cc.s
+.PHONY : vehicle.cc.s
+
+writer.o: writer.cc.o
 
 .PHONY : writer.o
 
 # target to build an object file
-writer.cpp.o:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/writer.cpp.o
-.PHONY : writer.cpp.o
+writer.cc.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/writer.cc.o
+.PHONY : writer.cc.o
 
-writer.i: writer.cpp.i
+writer.i: writer.cc.i
 
 .PHONY : writer.i
 
 # target to preprocess a source file
-writer.cpp.i:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/writer.cpp.i
-.PHONY : writer.cpp.i
+writer.cc.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/writer.cc.i
+.PHONY : writer.cc.i
 
-writer.s: writer.cpp.s
+writer.s: writer.cc.s
 
 .PHONY : writer.s
 
 # target to generate assembly for a file
-writer.cpp.s:
-	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/writer.cpp.s
-.PHONY : writer.cpp.s
+writer.cc.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/writer.cc.s
+.PHONY : writer.cc.s
 
 # Help Target
 help:
@@ -249,6 +276,9 @@ help:
 	@echo "... reader.o"
 	@echo "... reader.i"
 	@echo "... reader.s"
+	@echo "... vehicle.o"
+	@echo "... vehicle.i"
+	@echo "... vehicle.s"
 	@echo "... writer.o"
 	@echo "... writer.i"
 	@echo "... writer.s"

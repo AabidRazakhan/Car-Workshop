@@ -4,10 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ashar/CLionProjects/Car Workshop/datetime.cpp" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/datetime.cpp.o"
-  "/home/ashar/CLionProjects/Car Workshop/main.cpp" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/main.cpp.o"
-  "/home/ashar/CLionProjects/Car Workshop/reader.cpp" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/reader.cpp.o"
-  "/home/ashar/CLionProjects/Car Workshop/writer.cpp" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/writer.cpp.o"
+  "/home/ashar/CLionProjects/Car Workshop/datetime.cc" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/datetime.cc.o"
+  "/home/ashar/CLionProjects/Car Workshop/main.cc" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/main.cc.o"
+  "/home/ashar/CLionProjects/Car Workshop/reader.cc" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/reader.cc.o"
+  "/home/ashar/CLionProjects/Car Workshop/vehicle.cc" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/vehicle.cc.o"
+  "/home/ashar/CLionProjects/Car Workshop/writer.cc" "/home/ashar/CLionProjects/Car Workshop/cmake-build-debug/CMakeFiles/Car_Workshop.dir/writer.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
