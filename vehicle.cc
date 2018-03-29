@@ -62,6 +62,16 @@ void vehicle::vehicle::set_model_number(char *n) {
 void vehicle::vehicle::set_colour(color c) {
   this->colour = c;
 }
+vehicle::vehicle::vehicle(int a) : age(a) {}
+vehicle::vehicle::vehicle(char *number, char *model, char *manufacturer, int age, color c) : vehicle(age), vehicle(c) {
+  strcpy(this->number, number);
+  strcpy(this->model_number, model);
+  strcpy(this->manufacturer_name, manufacturer);
+
+}
+vehicle::vehicle::vehicle(color c) {
+  this->colour = c;
+}
 
 vehicle::vehicle::~vehicle() = default;
 

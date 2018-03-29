@@ -15,6 +15,7 @@
 
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
+
 #ifndef CAR_WORKSHOP_VEHICLE_H
 #define CAR_WORKSHOP_VEHICLE_H
 
@@ -44,7 +45,7 @@ struct type {
 };
 
 typedef char compat_string[1000];
-class vehicle {
+class vehicle { // NOLINT
 
  protected:
   int age;
@@ -55,6 +56,9 @@ class vehicle {
 
  public:
   vehicle() = default;
+  explicit vehicle(int a);
+  vehicle(char *number, char*model, char*manufacturer,int age, color c);
+  vehicle(color c); // NOLINT
   int get_age() const;
   const char *get_number() const;
   const char *get_manufacturer_name() const;
