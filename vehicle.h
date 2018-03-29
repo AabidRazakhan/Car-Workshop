@@ -21,14 +21,6 @@
 #include <string>
 namespace vehicle {
 
-enum model_type {
-  sports,
-  family,
-  suv,
-  sedan,
-  lamouissone
-};
-
 enum color {
   red,
   green,
@@ -43,23 +35,31 @@ enum color {
   organge
 };
 
+class type {
+ public:
+  const char *mini = "MINI";
+  const char *sedan = "SEDAN";
+  const char *suv = "SUV";
+  const char *family = "FAMILY CLASS";
+  const char *sports = "SPORTS";
+};
+
 typedef char compat_string[1000];
 class vehicle {
+
  protected:
   int age;
   compat_string number;
   compat_string manufacturer_name;
   compat_string model_number;
-  model_type type;
   color colour;
 
  public:
-  vehicle() = delete;
+  vehicle() = default;
   int get_age() const;
-  const char * get_number() const;
-  const char * get_manufacturer_name() const;
-  const char * get_model_number() const;
-  model_type get_model_type() const;
+  const char *get_number() const;
+  const char *get_manufacturer_name() const;
+  const char *get_model_number() const;
   color get_colour() const;
 
   void set_age(int);
@@ -69,7 +69,6 @@ class vehicle {
   void set_manufacturer_name(compat_string);
   void set_model_number(std::string);
   void set_model_number(compat_string);
-  void set_model_type(model_type);
   void set_colour(color);
 
   virtual void describe() = 0;

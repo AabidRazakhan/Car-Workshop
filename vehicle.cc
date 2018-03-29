@@ -32,9 +32,7 @@ const char *vehicle::vehicle::get_manufacturer_name() const {
 const char *vehicle::vehicle::get_model_number() const {
   return this->model_number;
 }
-vehicle::model_type vehicle::vehicle::get_model_type() const {
-  return this->type;
-}
+
 vehicle::color vehicle::vehicle::get_colour() const {
   return this->colour;
 }
@@ -60,9 +58,7 @@ void vehicle::vehicle::set_model_number(std::string n) {
 void vehicle::vehicle::set_model_number(char *n) {
   strcpy(this->model_number, n);
 }
-void vehicle::vehicle::set_model_type(model_type modelType) {
-  this->type = modelType;
-}
+
 void vehicle::vehicle::set_colour(color c) {
   this->colour = c;
 }

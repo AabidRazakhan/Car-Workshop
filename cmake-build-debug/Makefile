@@ -177,6 +177,60 @@ main.cc.s:
 	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/main.cc.s
 .PHONY : main.cc.s
 
+order.o: order.cc.o
+
+.PHONY : order.o
+
+# target to build an object file
+order.cc.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/order.cc.o
+.PHONY : order.cc.o
+
+order.i: order.cc.i
+
+.PHONY : order.i
+
+# target to preprocess a source file
+order.cc.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/order.cc.i
+.PHONY : order.cc.i
+
+order.s: order.cc.s
+
+.PHONY : order.s
+
+# target to generate assembly for a file
+order.cc.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/order.cc.s
+.PHONY : order.cc.s
+
+problem_map.o: problem_map.cc.o
+
+.PHONY : problem_map.o
+
+# target to build an object file
+problem_map.cc.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/problem_map.cc.o
+.PHONY : problem_map.cc.o
+
+problem_map.i: problem_map.cc.i
+
+.PHONY : problem_map.i
+
+# target to preprocess a source file
+problem_map.cc.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/problem_map.cc.i
+.PHONY : problem_map.cc.i
+
+problem_map.s: problem_map.cc.s
+
+.PHONY : problem_map.s
+
+# target to generate assembly for a file
+problem_map.cc.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/problem_map.cc.s
+.PHONY : problem_map.cc.s
+
 reader.o: reader.cc.o
 
 .PHONY : reader.o
@@ -273,6 +327,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... order.o"
+	@echo "... order.i"
+	@echo "... order.s"
+	@echo "... problem_map.o"
+	@echo "... problem_map.i"
+	@echo "... problem_map.s"
 	@echo "... reader.o"
 	@echo "... reader.i"
 	@echo "... reader.s"

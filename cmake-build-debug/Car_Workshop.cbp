@@ -93,6 +93,18 @@
 		<Unit filename="/home/ashar/CLionProjects/Car Workshop/main.cc">
 			<Option target="Car_Workshop"/>
 		</Unit>
+		<Unit filename="/home/ashar/CLionProjects/Car Workshop/order.cc">
+			<Option target="Car_Workshop"/>
+		</Unit>
+		<Unit filename="/home/ashar/CLionProjects/Car Workshop/order.h">
+			<Option target="Car_Workshop"/>
+		</Unit>
+		<Unit filename="/home/ashar/CLionProjects/Car Workshop/problem_map.cc">
+			<Option target="Car_Workshop"/>
+		</Unit>
+		<Unit filename="/home/ashar/CLionProjects/Car Workshop/problem_map.h">
+			<Option target="Car_Workshop"/>
+		</Unit>
 		<Unit filename="/home/ashar/CLionProjects/Car Workshop/reader.cc">
 			<Option target="Car_Workshop"/>
 		</Unit>
