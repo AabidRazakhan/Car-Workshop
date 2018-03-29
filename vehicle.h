@@ -35,8 +35,7 @@ enum color {
   organge
 };
 
-class type {
- public:
+struct type {
   const char *mini = "MINI";
   const char *sedan = "SEDAN";
   const char *suv = "SUV";

@@ -14,10 +14,7 @@
     <list default="true" id="81e9f734-91cc-42e8-bd49-027da322c19b" name="Default" comment="">
       <change beforePath="" afterPath="$PROJECT_DIR$/order.cc" />
       <change beforePath="" afterPath="$PROJECT_DIR$/order.h" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/problem_map.cc" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/problem_map.h" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/DependInfo.cmake" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/build.make" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/cmake_clean.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/cmake_clean.cmake" />
@@ -27,7 +24,6 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Car_Workshop.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/Car_Workshop.cbp" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
-      <change beforePath="$PROJECT_DIR$/vehicle.cc" afterPath="$PROJECT_DIR$/vehicle.cc" />
       <change beforePath="$PROJECT_DIR$/vehicle.h" afterPath="$PROJECT_DIR$/vehicle.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -51,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vehicle.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="vehicle.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vehicle.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="50" column="10" lean-forward="true" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+            <state relative-caret-position="401">
+              <caret line="43" column="2" lean-forward="true" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
               <folding>
                 <element signature="e#972#1086#1" expanded="false" />
               </folding>
@@ -97,7 +93,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="problem_map.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="problem_map.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/problem_map.h">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="401">
@@ -153,9 +149,9 @@
         <option value="$PROJECT_DIR$/mini_car.cc" />
         <option value="$PROJECT_DIR$/mini_car.h" />
         <option value="$PROJECT_DIR$/vehicle.cc" />
-        <option value="$PROJECT_DIR$/vehicle.h" />
         <option value="$PROJECT_DIR$/problem_map.h" />
         <option value="$PROJECT_DIR$/problem_map.cc" />
+        <option value="$PROJECT_DIR$/vehicle.h" />
       </list>
     </option>
   </component>
@@ -266,7 +262,7 @@
       <workItem from="1521907152810" duration="7363000" />
       <workItem from="1522053493693" duration="4333000" />
       <workItem from="1522311025016" duration="605000" />
-      <workItem from="1522342549613" duration="2851000" />
+      <workItem from="1522342549613" duration="2970000" />
     </task>
     <task id="LOCAL-00001" summary="spells">
       <created>1521755360242</created>
@@ -303,11 +299,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522057041299</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="problem_map finalized">
+      <created>1522345472196</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1522345472196</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39361000" />
+    <option name="totallyTimeSpent" value="39480000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1372" height="735" extended-state="6" />
@@ -345,7 +348,8 @@
     <MESSAGE value="removed readable_writable logic" />
     <MESSAGE value="added abstract class vehicle" />
     <MESSAGE value="operators overloaded for datetime" />
-    <option name="LAST_COMMIT_MESSAGE" value="operators overloaded for datetime" />
+    <MESSAGE value="problem_map finalized" />
+    <option name="LAST_COMMIT_MESSAGE" value="problem_map finalized" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -650,16 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vehicle.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="50" column="10" lean-forward="true" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
-          <folding>
-            <element signature="e#972#1086#1" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/problem_map.cc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -675,6 +669,16 @@
         <state relative-caret-position="401">
           <caret line="21" column="25" lean-forward="true" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vehicle.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="43" column="2" lean-forward="true" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
+          <folding>
+            <element signature="e#972#1086#1" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
