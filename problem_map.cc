@@ -18,10 +18,12 @@
 
 #include <cstring>
 #include "problem_map.h"
+
+#define GST (9)
 using namespace problem;
 
 void problem_map::describe() {
-//todo(implement the UI to Show the Problems and Vehicle Details
+//todo(implement the UI helper to Show the Problems and Vehicle Details
   //This will be called in the order.cc
 }
 bool problem_map::assign_problem(const char *d, int cost) {
@@ -39,8 +41,8 @@ void problem_map::undo_last_problem() {
 }
 bool problem_map::remove_problem_named(const char *d) {
   bool found = false;
-  for(int t=0;t<problem_count;t++){
-    if(strcmp(d,problems[t]) == 0){
+  for (int t = 0; t < problem_count; t++) {
+    if (strcmp(d, problems[t]) == 0) {
       __delete_entry(t);
       found = true;
       break;
@@ -50,10 +52,17 @@ bool problem_map::remove_problem_named(const char *d) {
 
 }
 problem_map::problem_map(const char *t) {
-  strcpy(type,t);
+  strcpy(type, t);
 }
 void problem_map::__delete_entry(int t) {
-  strcpy(problems[t],problems[problem_count-1]);
-  costINR[t] = costINR[problem_count-1];
+  strcpy(problems[t], problems[problem_count - 1]);
+  costINR[t] = costINR[problem_count - 1];
   problem_count--;
+}
+float problem_map::compute_final_cost() {
+  float temp = 0;
+  for (int i = 0; i < problem_count; ++i) {
+    temp += costINR[i];
+  }
+  return (temp*(100+GST))/100;
 }

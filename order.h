@@ -12,33 +12,45 @@
 *   You should have received a copy of the GNU General Public License along with this Source File.
 *   If not, see <http:www.gnu.org/licenses/>.
 */
-#pragma once
+
 #pragma clang diagnostic push
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
-
+#ifndef CAR_WORKSHOP_ORDER_H
+#define CAR_WORKSHOP_ORDER_H
+#include <stdexcept>
+#include "datetime.h"
 #include "vehicle.h"
-namespace problem {
-class problem_map : public vehicle::vehicle { // NOLINT
-  void __delete_entry(int t);
+#include "problem_map.h"
+
+#define ALL_ORDERS_NAME "all.db"
+#define PAST_ORDERS_NAME "past.db"
+#define ACTIVE_ORDERS_NAME "active.db"
+
+namespace financial {
+class order { // NOLINT
+  date::date_time order_time, due_date;
+  float chargeINR;
+  problem::problem_map p_map;
+
+  bool is_completed = false;
+
+  char remark[100];
+
+  char customer_name[50];
+
+  void save_order();
+
  public:
-  char problems[50][500];
-  int costINR[50];
-  char type[20];
-  int problem_count = 0;
+  order(){}; // NOLINT
 
-  problem_map() = default; //to store to order class
-
-  problem_map(const char* t); // NOLINT
-
-  bool assign_problem(const char *d, int cost);
-
-  void undo_last_problem();
-
-  bool remove_problem_named(const char* d);
-
-  float compute_final_cost();
-
-  void describe() override;
+  order(std::string dummy) { // NOLINT
+    throw std::runtime_error("Reader called String implementation. Make sure that you are opening in binary mode");
+  } //Should never be called
+  problem::problem_map get_problem_map() const;
+  void generate_receipt();
+  void finalize_and_complete_order();
+  static order create_new_order();
 };
 }
 #pragma clang diagonistic pop
+#endif //CAR_WORKSHOP_ORDER_H

@@ -35,8 +35,34 @@ reader.cc
 /home/ashar/CLionProjects/Car Workshop/reader.cc
 writer.cc
 /home/ashar/CLionProjects/Car Workshop/writer.cc
+order.h
+/home/ashar/CLionProjects/Car Workshop/order.h
+
+/home/ashar/CLionProjects/Car Workshop/order.cc
+order.h
+/home/ashar/CLionProjects/Car Workshop/order.h
+writer.h
+/home/ashar/CLionProjects/Car Workshop/writer.h
+writer.cc
+/home/ashar/CLionProjects/Car Workshop/writer.cc
+
+/home/ashar/CLionProjects/Car Workshop/order.h
+stdexcept
+-
 datetime.h
 /home/ashar/CLionProjects/Car Workshop/datetime.h
+vehicle.h
+/home/ashar/CLionProjects/Car Workshop/vehicle.h
+problem_map.h
+/home/ashar/CLionProjects/Car Workshop/problem_map.h
+
+/home/ashar/CLionProjects/Car Workshop/problem_map.cc
+cstring
+-
+problem_map.h
+/home/ashar/CLionProjects/Car Workshop/problem_map.h
+
+/home/ashar/CLionProjects/Car Workshop/problem_map.h
 vehicle.h
 /home/ashar/CLionProjects/Car Workshop/vehicle.h
 

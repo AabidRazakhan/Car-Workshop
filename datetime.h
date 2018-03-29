@@ -27,13 +27,12 @@ class date_time {
   char str_time[21];
  public:
   date_time();
-  date_time(std::string s) {}; // NOLINT
-  //This constructor is required to restore data back from file using reader class
   explicit date_time(int); //just don't create automatically. Safety check
   std::string get_timestamp();
   std::string get_date_timestamp();
 
   static long long get_milisecond_since_epoch();
+  static date_time parse_from_string(const char* s) throw();
 
   int get_date() const;
   int get_sec() const;
@@ -44,7 +43,6 @@ class date_time {
 
   void set_date(int date, int month, int year);
   void set_time(int hour, int min, int sec);
-  void set_str_time(char *n);
 
   bool operator>(date_time other);
   bool operator==(date_time other);

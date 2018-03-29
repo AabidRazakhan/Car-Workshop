@@ -106,9 +106,6 @@ void date::date_time::set_time(int hour, int min, int sec) {
   this->second = sec;
 }
 
-void date::date_time::set_str_time(char *k) {
-  strcpy(this->str_time, k);
-}
 bool date_time::operator>(date_time other) {
   if (this->year > other.year)
     return true;
@@ -173,5 +170,20 @@ bool date_time::operator==(date_time other) {
       && this->date == other.date
       && this->month == other.month
       && this->year == other.year;
+}
+date_time date_time::parse_from_string(const char* s) throw() {
+  date_time dateTime;
+  std::string str(s);
+  int date = static_cast<int>(std::stoll(str.substr(0, 2)));
+  int month = static_cast<int>(std::stoll(str.substr(3, 2)));
+  int year = static_cast<int>(std::stoll(str.substr(6, 4)));
+
+  int hour = static_cast<int>(std::stoll(str.substr(11, 2)));
+  int minute = static_cast<int>(std::stoll(str.substr(14, 2)));
+  int second = static_cast<int>(std::stoll(str.substr(17, 2)));
+
+  dateTime.set_date(date,month,year);
+  dateTime.set_time(hour,minute,second);
+  return dateTime;
 }
 #pragma clang diagnostic pop
