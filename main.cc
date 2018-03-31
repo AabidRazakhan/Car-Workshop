@@ -1,14 +1,23 @@
 #include <iostream>
-
-#include "reader.h"
-#include "writer.h"
-#include "reader.cc"
-#include "writer.cc"
-#include "order.h"
+#include <iomanip>
+#include "utils.h"
 
 int main() {
 
-  financial::order r = financial::order::create_new_order();
+  if (helper::utils::check_install_status()) {
+    helper::utils::initialize_first_time();
+    helper::utils::start_menu_run();
+  } else {
+    std::cout << std::setw(50) << "Enter the Password : ";
+    std::string p;
+    std::cin >> p;
+    if (helper::utils::validate_password(p))
+      helper::utils::start_menu_run();
+    else {
+      std::cerr << "Incorrect Password.."<<std::endl;
+      std::exit(EXIT_FAILURE);
+    }
+  }
 
-  return 0;
+  return EXIT_SUCCESS;
 }

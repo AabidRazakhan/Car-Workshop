@@ -29,17 +29,17 @@ problem::problem_map order::get_problem_map() const {
 order order::create_new_order() {
   order new_order;
   new_order.order_time = date::date_time(0); //current_time
-  //todo Here a UI helper will be called to create a new screen with details for new order
+  //todo(coder3101) Here a UI helper will be called to create a new screen with details for new order
   return new_order;
 
 }
 void order::generate_receipt() {
-  //todo Here you need to call a UI helper for decorating the screen
+  //todo(coder3101) Here you need to call a UI helper for decorating the screen
   p_map.describe();
 
 }
 void order::finalize_and_complete_order() {
-  //todo Prompt for saving order yes/no
+  //todo(coder3101)Prompt for saving order yes/no
   save_order();
 
 }
@@ -48,6 +48,6 @@ void order::save_order() {
   file::writer<order> writer2(ACTIVE_ORDERS_NAME, true);
   writer1.write(*this);
   writer2.write(*this);
-  //todo UI helper to show a order success save
+  //todo(coder3101) UI helper to show a order success save
 }
 

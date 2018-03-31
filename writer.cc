@@ -48,7 +48,7 @@ template<class T>
 void file::writer<T>::replace_write(T &obj, int pos) throw() {
   long long prev_pointer = w_stream.tellp();
   if (isbinary) {
-    seek_to(pos, std::ios::beg);
+    seek_to((pos-1)* sizeof(T), std::ios::beg);
     w_stream.write(reinterpret_cast<char *>(&obj), sizeof(T));
     w_stream.seekp(prev_pointer, std::ios::beg);
   } else {
@@ -121,7 +121,7 @@ void writer<T>::initiate(re_write_mode mode) throw() {
       if (mode == append)
         w_stream.open(file_name, std::ios::app | std::ios::binary);
       else
-        w_stream.open(file_name, std::ios::binary | std::ios::ate);
+        w_stream.open(file_name, std::ios::ate | std::ios::binary);
     } else {
       if (mode == append)
         w_stream.open(file_name, std::ios::app);
