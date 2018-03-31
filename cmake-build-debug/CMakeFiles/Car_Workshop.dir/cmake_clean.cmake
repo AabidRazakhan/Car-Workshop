@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Car_Workshop.dir/vehicle.cc.o"
   "CMakeFiles/Car_Workshop.dir/order.cc.o"
   "CMakeFiles/Car_Workshop.dir/problem_map.cc.o"
+  "CMakeFiles/Car_Workshop.dir/utils.cc.o"
   "Car_Workshop.pdb"
   "Car_Workshop"
 )

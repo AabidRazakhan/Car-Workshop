@@ -111,6 +111,12 @@
 		<Unit filename="/home/ashar/CLionProjects/Car Workshop/reader.h">
 			<Option target="Car_Workshop"/>
 		</Unit>
+		<Unit filename="/home/ashar/CLionProjects/Car Workshop/utils.cc">
+			<Option target="Car_Workshop"/>
+		</Unit>
+		<Unit filename="/home/ashar/CLionProjects/Car Workshop/utils.h">
+			<Option target="Car_Workshop"/>
+		</Unit>
 		<Unit filename="/home/ashar/CLionProjects/Car Workshop/vehicle.cc">
 			<Option target="Car_Workshop"/>
 		</Unit>

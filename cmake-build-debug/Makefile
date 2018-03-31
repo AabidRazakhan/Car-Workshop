@@ -258,6 +258,33 @@ reader.cc.s:
 	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/reader.cc.s
 .PHONY : reader.cc.s
 
+utils.o: utils.cc.o
+
+.PHONY : utils.o
+
+# target to build an object file
+utils.cc.o:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/utils.cc.o
+.PHONY : utils.cc.o
+
+utils.i: utils.cc.i
+
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.cc.i:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/utils.cc.i
+.PHONY : utils.cc.i
+
+utils.s: utils.cc.s
+
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.cc.s:
+	$(MAKE) -f CMakeFiles/Car_Workshop.dir/build.make CMakeFiles/Car_Workshop.dir/utils.cc.s
+.PHONY : utils.cc.s
+
 vehicle.o: vehicle.cc.o
 
 .PHONY : vehicle.o
@@ -336,6 +363,9 @@ help:
 	@echo "... reader.o"
 	@echo "... reader.i"
 	@echo "... reader.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
 	@echo "... vehicle.o"
 	@echo "... vehicle.i"
 	@echo "... vehicle.s"
