@@ -11,9 +11,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81e9f734-91cc-42e8-bd49-027da322c19b" name="Default" comment="internals">
-      <change beforePath="" afterPath="$PROJECT_DIR$/utils.cc" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/utils.h" />
+    <list default="true" id="81e9f734-91cc-42e8-bd49-027da322c19b" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/CXX.includecache" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/CXX.includecache" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/DependInfo.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Car_Workshop.dir/DependInfo.cmake" />
@@ -29,10 +27,7 @@
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Car_Workshop" afterPath="$PROJECT_DIR$/cmake-build-debug/Car_Workshop" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Car_Workshop.cbp" afterPath="$PROJECT_DIR$/cmake-build-debug/Car_Workshop.cbp" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" />
-      <change beforePath="$PROJECT_DIR$/main.cc" afterPath="$PROJECT_DIR$/main.cc" />
-      <change beforePath="$PROJECT_DIR$/order.cc" afterPath="$PROJECT_DIR$/order.cc" />
-      <change beforePath="$PROJECT_DIR$/problem_map.cc" afterPath="$PROJECT_DIR$/problem_map.cc" />
-      <change beforePath="$PROJECT_DIR$/writer.cc" afterPath="$PROJECT_DIR$/writer.cc" />
+      <change beforePath="$PROJECT_DIR$/utils.cc" afterPath="$PROJECT_DIR$/utils.cc" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,7 +40,7 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.cc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cc">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="320">
@@ -57,14 +52,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="utils.cc" pinned="false" current-in-tab="false">
+      <file leaf-file-name="utils.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1078">
-              <caret line="63" column="1" lean-forward="true" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <element signature="e#2#20#0" expanded="true" />
-                <element signature="e#2551#2569#0" expanded="true" />
+                <element signature="e#772#790#0" expanded="true" />
+                <element signature="e#3321#3339#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,8 +108,8 @@
       <file leaf-file-name="utils.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding>
                 <element signature="e#830#848#0" expanded="true" />
               </folding>
@@ -173,8 +168,8 @@
         <option value="$PROJECT_DIR$/reader.cc" />
         <option value="$PROJECT_DIR$/writer.cc" />
         <option value="$PROJECT_DIR$/utils.h" />
-        <option value="$PROJECT_DIR$/utils.cc" />
         <option value="$PROJECT_DIR$/main.cc" />
+        <option value="$PROJECT_DIR$/utils.cc" />
       </list>
     </option>
   </component>
@@ -286,7 +281,7 @@
       <workItem from="1522053493693" duration="4333000" />
       <workItem from="1522311025016" duration="605000" />
       <workItem from="1522342549613" duration="8996000" />
-      <workItem from="1522525704313" duration="8838000" />
+      <workItem from="1522525704313" duration="8930000" />
     </task>
     <task id="LOCAL-00001" summary="spells">
       <created>1521755360242</created>
@@ -365,11 +360,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522534558084</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="created utils and finalized main">
+      <created>1522534619112</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1522534619112</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54344000" />
+    <option name="totallyTimeSpent" value="54436000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -421,7 +423,8 @@
     <MESSAGE value="vehicle's constructors enhanced" />
     <MESSAGE value="created and testing order.cc/h" />
     <MESSAGE value="internals" />
-    <option name="LAST_COMMIT_MESSAGE" value="internals" />
+    <MESSAGE value="created utils and finalized main" />
+    <option name="LAST_COMMIT_MESSAGE" value="created utils and finalized main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -783,10 +786,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/main.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="16" column="53" lean-forward="true" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/utils.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="e#830#848#0" expanded="true" />
           </folding>
@@ -795,21 +808,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils.cc">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1078">
-          <caret line="63" column="1" lean-forward="true" selection-start-line="63" selection-start-column="1" selection-end-line="63" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#2#20#0" expanded="true" />
-            <element signature="e#2551#2569#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="53" lean-forward="true" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#772#790#0" expanded="true" />
+            <element signature="e#3321#3339#0" expanded="true" />
           </folding>
         </state>
       </provider>
