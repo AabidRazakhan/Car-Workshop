@@ -24,10 +24,13 @@ CMakeFiles/Car_Workshop.dir/reader.cc.o: ../reader.cc
 CMakeFiles/Car_Workshop.dir/reader.cc.o: ../reader.h
 
 CMakeFiles/Car_Workshop.dir/utils.cc.o: ../datetime.h
+CMakeFiles/Car_Workshop.dir/utils.cc.o: ../order.h
+CMakeFiles/Car_Workshop.dir/utils.cc.o: ../problem_map.h
 CMakeFiles/Car_Workshop.dir/utils.cc.o: ../reader.cc
 CMakeFiles/Car_Workshop.dir/utils.cc.o: ../reader.h
 CMakeFiles/Car_Workshop.dir/utils.cc.o: ../utils.cc
 CMakeFiles/Car_Workshop.dir/utils.cc.o: ../utils.h
+CMakeFiles/Car_Workshop.dir/utils.cc.o: ../vehicle.h
 CMakeFiles/Car_Workshop.dir/utils.cc.o: ../writer.cc
 CMakeFiles/Car_Workshop.dir/utils.cc.o: ../writer.h
 
