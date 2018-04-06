@@ -14,7 +14,7 @@ int main() {
     if (helper::utils::validate_password(p))
       helper::utils::start_menu_run();
     else {
-      std::cerr << "Incorrect Password.."<<std::endl;
+      std::cerr << "Incorrect Password.." << std::endl;
       std::exit(EXIT_FAILURE);
     }
   }

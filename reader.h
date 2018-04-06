@@ -55,17 +55,16 @@ class reader {
   std::ifstream st;
   bool isbinary;
   std::string file_name;
-
-  void initiate() throw();
+  void initiate();
 
  public:
   reader() = delete;
-  explicit reader(std::string file_name, bool bin = false) throw();
+  explicit reader(std::string file_name, bool bin = false);
   long long tell();
-  void seek_to(int off, std::ios::seekdir type) throw();
-  T read() throw();
-  T read(int pos) throw();
-  void read_all(std::vector<T> &) throw();
+  void seek_to(int off, std::ios::seekdir type);
+  T read();
+  T read(int pos);
+  void read_all(std::vector<T> &);
   ~reader();
 };
 }

@@ -22,14 +22,14 @@
 using namespace file;
 
 template<class T>
-reader<T>::reader(std::string file, bool bin) throw() {
+reader<T>::reader(std::string file, bool bin) {
   this->file_name = file;
   this->isbinary = bin;
   initiate();
 }
 
 template<class T>
-void reader<T>::initiate() throw() {
+void reader<T>::initiate() {
   if (isbinary)
     st.open(file_name, std::ios::in | std::ios::binary);
   else
@@ -37,7 +37,7 @@ void reader<T>::initiate() throw() {
   if (st.fail()) {
     char message[180];
     strcpy(message, std::strerror(errno));
-    throw std::runtime_error(message);
+      throw std::runtime_error(message);
   }
 }
 
@@ -47,7 +47,7 @@ long long reader<T>::tell() {
 }
 
 template<class T>
-void reader<T>::seek_to(int pos, std::ios::seekdir type) throw() {
+void reader<T>::seek_to(int pos, std::ios::seekdir type) {
   if (isbinary) {
     this->st.seekg((pos - 1) * sizeof(T), type);
   } else
@@ -55,7 +55,7 @@ void reader<T>::seek_to(int pos, std::ios::seekdir type) throw() {
 }
 
 template<class T>
-T reader<T>::read() throw() {
+T reader<T>::read() {
   if (isbinary) {
     T res;
     st.read(reinterpret_cast<char *>(&res), sizeof(T));
@@ -71,7 +71,7 @@ T reader<T>::read() throw() {
 }
 
 template<class T>
-T reader<T>::read(int pos) throw(){
+T reader<T>::read(int pos)  {
   if (isbinary) {
     long long prev_point = st.tellg();
     st.seekg((pos - 1) * sizeof(T), std::ios::beg);
@@ -82,19 +82,19 @@ T reader<T>::read(int pos) throw(){
   } else {
 
     long prev_point = st.tellg();
-    st.seekg(pos,std::ios::beg);
+    st.seekg(pos, std::ios::beg);
 
     auto *res = new char[800];
     st.getline(res, 800, '\n');
     std::string v(res);
     delete res;
-    st.seekg(prev_point,std::ios::beg);
-    return (T)v;
+    st.seekg(prev_point, std::ios::beg);
+    return (T) v;
   }
 }
 
 template<class T>
-void reader<T>::read_all(std::vector<T> &out) throw() {
+void reader<T>::read_all(std::vector<T> &out)  {
   long prev = st.tellg();
   if (isbinary) {
     st.seekg(0, std::ios::beg);
@@ -103,7 +103,7 @@ void reader<T>::read_all(std::vector<T> &out) throw() {
       st.read(reinterpret_cast<char *>(&o), sizeof(T));
       out.push_back(o);
     }
-    st.seekg(prev,std::ios::beg);
+    st.seekg(prev, std::ios::beg);
   } else {
     st.seekg(0, std::ios::beg);
     std::string res;
@@ -111,7 +111,7 @@ void reader<T>::read_all(std::vector<T> &out) throw() {
     while (!st.eof()) {
       st.getline(buff, 800, '\n');
       std::string s(buff);
-      out.push_back((T)s);
+      out.push_back((T) s);
     }
     delete buff;
   }

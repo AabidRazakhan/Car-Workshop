@@ -28,18 +28,33 @@ struct utils {
   static void start_menu_run();
   static bool validate_password(const std::string &s);
   static bool change_password();
-  static void restore_and_delete_all();
-
+  static void restore_and_delete_config();
+  static void re_authenticate();
+  static void _exit();
   static void clear_screen();
 };
 
-struct config{ // NOLINT
+struct config { // NOLINT
   char password[100];
   date::date_time create_time, last_launch;
+  char admin_name[80];
   config() = default;
-  config(std::string pass){ // NOLINT
-    std::strcpy(password,pass.c_str());
+  config(std::string pass) { // NOLINT
+    std::strcpy(password, pass.c_str());
   }
+};
+
+class data_register {
+  data_register() = default;
+ public:
+  int total_completed = -1, total_pending = -1;
+  static data_register get_data_register_instance();
+};
+
+struct ui {
+  static void show_main_menu(config c);
+  static void launch_option(int x);
+
 };
 }
 

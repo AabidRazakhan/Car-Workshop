@@ -20,7 +20,7 @@
 using namespace file;
 
 template<class T>
-writer<T>::writer(std::string file_name, bool bin) throw() {
+writer<T>::writer(std::string file_name, bool bin){
   this->isbinary = bin;
   this->file_name = file_name;
   initiate();
@@ -32,7 +32,7 @@ long long writer<T>::tell() {
 }
 
 template<class T>
-void file::writer<T>::write(T &obj, bool next_line) throw() {
+void file::writer<T>::write(T &obj, bool next_line) {
   if (isbinary) {
     w_stream.write(reinterpret_cast<char *>(&obj), sizeof(T));
   } else {
@@ -45,7 +45,7 @@ void file::writer<T>::write(T &obj, bool next_line) throw() {
 }
 
 template<class T>
-void file::writer<T>::replace_write(T &obj, int pos) throw() {
+void file::writer<T>::replace_write(T &obj, int pos){
   long long prev_pointer = w_stream.tellp();
   if (isbinary) {
     seek_to((pos-1)* sizeof(T), std::ios::beg);
@@ -62,7 +62,7 @@ void file::writer<T>::replace_write(T &obj, int pos) throw() {
 }
 
 template<class T>
-void file::writer<T>::seek_to(int off, std::ios::seekdir type) throw() {
+void file::writer<T>::seek_to(int off, std::ios::seekdir type) {
   if (isbinary) {
     int nop = (off - 1) * sizeof(T);
     this->w_stream.seekp(nop, type);
@@ -94,7 +94,7 @@ writer<T>::~writer() {
 }
 
 template<class T>
-void writer<T>::initiate() throw() {
+void writer<T>::initiate(){
   if (isbinary)
     w_stream.open(file_name, std::ios::out | std::ios::binary);
   else
@@ -106,14 +106,14 @@ void writer<T>::initiate() throw() {
   }
 }
 template<class T>
-writer<T>::writer(std::string file_name, re_write_mode mode, bool bin) throw() {
+writer<T>::writer(std::string file_name, re_write_mode mode, bool bin) {
   this->isbinary = bin;
   this->file_name = file_name;
   initiate(mode);
 }
 
 template<class T>
-void writer<T>::initiate(re_write_mode mode) throw() {
+void writer<T>::initiate(re_write_mode mode) {
   if (file_exist_check_fail()) {
     throw std::runtime_error("Failed to write to a file that does not exist");
   } else {
