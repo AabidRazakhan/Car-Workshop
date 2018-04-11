@@ -17,11 +17,11 @@
 #include <fstream>
 #include <iomanip>
 #include "utils.h"
-#include "writer.h"
-#include "reader.h"
-#include "writer.cc"
-#include "reader.cc"
-#include "order.h"
+#include "../file_helper/writer.h"
+#include "../file_helper/reader.h"
+#include "../file_helper/writer.cc"
+#include "../file_helper/reader.cc"
+#include "../base/order.h"
 
 using namespace helper;
 
@@ -78,8 +78,8 @@ void utils::initialize_first_time() {
   }
 }
 bool utils::validate_password(const std::string &s) {
-  file::reader<config> reader1(CONFIG_FILE_NAME, true);
-  return strcmp(reader1.read().password, s.c_str()) == 0;
+  std::unique_ptr<file::reader<config>> r(new file::reader<config>(CONFIG_FILE_NAME, true));
+  return strcmp(r->read().password, s.c_str()) == 0;
 }
 bool utils::change_password() {
   clear_screen();
@@ -101,15 +101,28 @@ bool utils::change_password() {
     std::cerr << "Too Small Password, Falling back to previous password" << std::endl;
   }
 }
+bool utils::change_username() {
+  clear_screen();
+  file::reader<config> *reader1 = new file::reader<config>(CONFIG_FILE_NAME, true);
+  config c = reader1->read();
+  delete reader1;
+  std::cout << "Enter the new username (no space): ";
+  std::string new_name;
+  std::cin >> new_name;
+  strcpy(c.admin_name, new_name.c_str());
+  file::writer<config> *writer1 = new file::writer<config>(CONFIG_FILE_NAME, true);
+  writer1->write(c);
+  delete writer1;
+  start_menu_run();
+}
 void utils::restore_and_delete_config() {
   clear_screen();
-  std::cout << "Are you sure to Restore all Settings and Delete all Data ?" << std::endl;
   std::cout << "This action cannot be Undone. (Type yes to proceed) : ";
   std::string s;
   std::cin >> s;
   if (!(s == "yes")) {
     std::cout << std::endl << "Aborted the Delete Command." << std::endl;
-    return;
+    utils::start_menu_run();
   }
 
 #ifdef __WIN32
@@ -117,7 +130,8 @@ void utils::restore_and_delete_config() {
 #else
   std::system((std::string("rm -rf ") + std::string(CONFIG_FILE_NAME)).c_str());
 #endif
-  //todo(coder3101) : Implement this
+
+  exit(0);
 }
 void utils::start_menu_run() {
 
@@ -144,7 +158,7 @@ void utils::re_authenticate() {
     initialize_first_time();
     start_menu_run();
   } else {
-    std::cout << std::setw(50) << "Enter the Password : ";
+    std::cout << std::setw(50) << " Re-authenticate with the Password : ";
     std::string p;
     std::cin >> p;
     if (validate_password(p))
@@ -157,7 +171,6 @@ void utils::re_authenticate() {
 
 }
 void utils::_exit() {
-//todo(coder3101) : Free up all resources and allow everything to be saved
   file::reader<config> *reader1 = new file::reader<config>(CONFIG_FILE_NAME, true);
   config c = reader1->read();
   delete reader1;
@@ -165,6 +178,7 @@ void utils::_exit() {
   c.last_launch = date::date_time(0);
   writer1->write(c);
   delete writer1;
+  exit(0);
 
 }
 
@@ -191,21 +205,103 @@ void ui::show_main_menu(config c) {
   cout << setw(70) << "2. Modify the Order" << endl;
   cout << setw(70) << "3. Show  all  Order" << endl;
   cout << setw(70) << "4. Settings & Utils" << endl;
+  cout << setw(70) << "5. Save  and   Exit" << endl;
   cout << endl << endl << "Press respective keys to perform ops : ";
   size_t x = 0;
   while (!x) {
     cin >> x;
-    if (x > 4) {
+    if (x > 5) {
       x = 0;
       cout << "\nOops Unrecognized. Retry : ";
     } else {
       ui::launch_option(static_cast<int>(x));
     }
   }
-
-  utils::clear_screen();
-  utils::_exit();
 }
 void ui::launch_option(int x) {
-  utils::_exit();
+  switch (x) {
+    case 1 : ui::options::take_order();
+      break;
+    case 2 : ui::options::modify_order();
+      break;
+    case 3 : ui::options::show_all();
+      break;
+    case 4 : ui::options::settings_and_utils();
+      break;
+    case 5 : utils::_exit();
+      break;
+    default:std::cerr << std::setw(60) << "Unknown Option : Exiting";
+      utils::_exit();
+      break;
+  }
+}
+
+void ui::options::settings_and_utils() {
+  utils::clear_screen();
+  using namespace std;
+  int c;
+  cout << setw(80) << "Settings and Utilities\n\n\n";
+  cout << setw(84) << "1. Change Administrator Password\n";
+  cout << setw(84) << "2. Change Administrator Username\n";
+  cout << setw(78) << "3. Reset and delete config\n";
+  cout << setw(75) << "4. Reset all datafiles\n\n";
+  cout << setw(78) << "5. -------   Back  -------\n";
+
+  cout << endl << endl << "Press respective keys to perform ops : ";
+  cin >> c;
+
+  if (c == 1) {
+    utils::change_password();
+  } else if (c == 2) {
+    utils::change_username();
+  } else if (c == 3) {
+    cout << "\n\nThe application will terminate  after this operation. Still Continue (yes/no) : ";
+    string c2;
+    cin >> c2;
+    if (c2 == "yes") {
+      utils::restore_and_delete_config();
+      utils::_exit();
+    } else {
+      utils::start_menu_run();
+    }
+
+  } else if (c == 4) {
+
+    cout
+        << "\n\nThe application will terminate after this operation and all Data will be lost. Still Continue (yes/no) : ";
+    string c2;
+    cin >> c2;
+    if (c2 == "yes") {
+#ifdef __WIN32
+      std::system((std::string("del ") + std::string(ACTIVE_ORDERS_NAME)).c_str());
+      std::system((std::string("del ") + std::string(PAST_ORDERS_NAME)).c_str());
+      std::system((std::string("del ") + std::string(ACTIVE_ORDERS_NAME)).c_str());
+
+#else
+      std::system((std::string("rm -rf ") + std::string(ACTIVE_ORDERS_NAME)).c_str());
+      std::system((std::string("rm -rf ") + std::string(PAST_ORDERS_NAME)).c_str());
+      std::system((std::string("rm -rf ") + std::string(ACTIVE_ORDERS_NAME)).c_str());
+
+#endif
+      utils::_exit();
+    } else {
+      utils::start_menu_run();
+    }
+
+  } else if (c == 5) {
+    utils::start_menu_run();
+  } else {
+    cerr << "Falling back to old settings. Invalid Key Press";
+    utils::start_menu_run();
+  }
+
+}
+void ui::options::take_order() {
+
+}
+void ui::options::modify_order() {
+
+}
+void ui::options::show_all() {
+
 }

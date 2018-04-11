@@ -28,6 +28,7 @@ struct utils {
   static void start_menu_run();
   static bool validate_password(const std::string &s);
   static bool change_password();
+  static bool change_username();
   static void restore_and_delete_config();
   static void re_authenticate();
   static void _exit();
@@ -54,7 +55,12 @@ class data_register {
 struct ui {
   static void show_main_menu(config c);
   static void launch_option(int x);
-
+  struct options{
+    static void settings_and_utils();
+    static void take_order();
+    static void modify_order();
+    static void show_all();
+  };
 };
 }
 
