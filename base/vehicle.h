@@ -33,7 +33,6 @@ enum color {
   purple,
   maroon,
   blue,
-  organge
 };
 
 struct type {

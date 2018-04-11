@@ -73,7 +73,7 @@ void file::writer<T>::seek_to(int off, std::ios::seekdir type) {
 template<class T>
 void file::writer<T>::write_all(std::vector<T> &ref, bool newline) {
   if (isbinary) {
-    for (T elt : ref)
+    for (T &elt : ref)
       w_stream.write(reinterpret_cast<char *>(&elt), sizeof(T));
   } else {
     for (T elt:ref) {

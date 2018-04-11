@@ -29,26 +29,27 @@
 namespace financial {
 class order { // NOLINT
   date::date_time order_time, due_date;
-  float chargeINR;
   problem::problem_map p_map;
-
-  bool is_completed = false;
 
   char remark[100];
 
   char customer_name[50];
 
-  void save_order();
-
  public:
-  order(){}; // NOLINT
+  order(){ // NOLINT
+    order_time = date::date_time(0);
+  };
+
+  bool is_completed = false;
+  float chargeINR = 0; //perfectly allowed in Cxx11 and later
+
 
   order(std::string dummy) { // NOLINT
     throw std::runtime_error("Reader called String implementation. Make sure that you are opening in binary mode");
   } //Should never be called
   problem::problem_map get_problem_map() const;
   void generate_receipt();
-  void finalize_and_complete_order();
+  void apply_cost();
   static order create_new_order();
 };
 }

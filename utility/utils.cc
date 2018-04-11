@@ -16,6 +16,7 @@
 
 #include <fstream>
 #include <iomanip>
+#include <thread>
 #include "utils.h"
 #include "../file_helper/writer.h"
 #include "../file_helper/reader.h"
@@ -297,11 +298,70 @@ void ui::options::settings_and_utils() {
 
 }
 void ui::options::take_order() {
+  utils::clear_screen();
+  financial::order new_order = financial::order::create_new_order();
+  std::cout << "Are you sure you want to add this order : ";
+  std::string s;
+  std::cin >> s;
+  //fixme(coder3101) This is driving me crazy. Fixme soon...
+  if (s == "yes") {
+
+    std::vector<financial::order> all_active, all_order;
+    try {
+      file::reader<financial::order> *reader1 = new file::reader<financial::order>(ACTIVE_ORDERS_NAME, true);
+      //file::reader<financial::order> *reader2 = new file::reader<financial::order>(ALL_ORDERS_NAME, true);
+
+      reader1->read_all(all_active);
+      //reader2->read_all(all_order);
+
+      std::cout<<"Reading size for active : "<<all_active.size();
+
+      delete reader1;
+      //delete reader2;
+
+    }catch (std::runtime_error &e){
+      //ignore it simple means this is first install
+    }
+
+    std::cout<<"size for active before push_back : "<<all_active.size();
+
+
+    //all_active.push_back(new_order);
+    all_order.push_back(new_order);
+
+    std::cout<<"size for active  after push_back: "<<all_active.size();
+
+
+    file::writer<financial::order> *writer1 = new file::writer<financial::order>(ACTIVE_ORDERS_NAME, true);
+    //file::writer<financial::order> *writer2 = new file::writer<financial::order>(ALL_ORDERS_NAME, true);
+
+    writer1->write_all(all_active);
+    //writer2->write_all(all_order);
+
+    delete writer1;
+    //delete writer2;
+
+    std::cout << "\n\nThe Order was saved and will be visible soon...";
+
+    //Equivalent for delay from dos.h
+    std::this_thread::sleep_for(std::chrono::seconds(2));
+    utils::start_menu_run();
+
+  } else {
+    utils::start_menu_run();
+  }
 
 }
 void ui::options::modify_order() {
 
 }
 void ui::options::show_all() {
-
+  std::vector<financial::order> orders;
+  file::reader<financial::order> *reader1 = new file::reader<financial::order>(ACTIVE_ORDERS_NAME, true);
+  reader1->read_all(orders);
+  delete reader1;
+  //todo(coder3101) implement this
+  for(financial::order &e : orders){
+    std::cout<<e.get_problem_map().get_manufacturer_name()<<"\n";
+  }
 }
