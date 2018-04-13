@@ -73,7 +73,7 @@ class vehicle { // NOLINT
   void set_model_number(compat_string);
   void set_colour(color);
 
-  virtual void describe() = 0;
+  virtual void describe() const = 0;
   //Describes the vehicle, must be overridden by derived classes setting it a pure virtual function
 
   virtual ~vehicle();

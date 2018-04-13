@@ -17,14 +17,21 @@
 #pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
 
 #include <cstring>
+#include <iostream>
+#include <iomanip>
 #include "problem_map.h"
 
-#define GST (9)
 using namespace problem;
 
-void problem_map::describe() {
-//todo(coder3101) : implement the UI helper to Show the Problems and Vehicle Details
-  //This will be called in the order.cc
+void problem_map::describe() const {
+  using namespace std;
+  cout << "\n\n";
+  for (int i = 0; i < problem_count; ++i) {
+    cout.width(45);
+    cout << std::right << "Problem " << i + 1 << " is : " << problems[i];
+    cout.width(30);
+    cout << std::right << "Cost of Repair : " << costINR[i] << endl;
+  }
 }
 bool problem_map::assign_problem(const char *d, int cost) {
   if (problem_count > 49)
@@ -58,11 +65,4 @@ void problem_map::__delete_entry(int t) {
   strcpy(problems[t], problems[problem_count - 1]);
   costINR[t] = costINR[problem_count - 1];
   problem_count--;
-}
-float problem_map::compute_final_cost() {
-  float temp = 0;
-  for (int i = 0; i < problem_count; ++i) {
-    temp += costINR[i];
-  }
-  return (temp*(100+GST))/100;
 }

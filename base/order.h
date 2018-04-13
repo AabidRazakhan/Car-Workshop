@@ -35,8 +35,10 @@ class order { // NOLINT
 
   char customer_name[50];
 
+  std::string parse_color(int i);
+
  public:
-  order(){ // NOLINT
+  order() { // NOLINT
     order_time = date::date_time(0);
   };
 

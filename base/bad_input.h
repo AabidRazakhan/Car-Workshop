@@ -12,31 +12,23 @@
 *   You should have received a copy of the GNU General Public License along with this Source File.
 *   If not, see <http:www.gnu.org/licenses/>.
 */
-#pragma once
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
 
-#include "vehicle.h"
-namespace problem {
-class problem_map : public vehicle::vehicle { // NOLINT
-  void __delete_entry(int t);
+#ifndef CAR_WORKSHOP_BAD_INPUT_H
+#define CAR_WORKSHOP_BAD_INPUT_H
+
+#include <bits/exception.h>
+#include <string>
+#include <cstring>
+namespace error {
+class bad_input : public std::exception {
+  char reason[100];
  public:
-  char problems[50][500];
-  int costINR[50];
-  char type[20];
-  int problem_count = 0;
-
-  problem_map() = default; //to store to order class
-
-  problem_map(const char* t); // NOLINT
-
-  bool assign_problem(const char *d, int cost);
-
-  void undo_last_problem();
-
-  bool remove_problem_named(const char* d);
-
-  void describe() const override ;
+  explicit bad_input(const std::string &msg) { strcpy(const_cast<char *>(reason), msg.c_str()); } // NOLINT
+  const char* what() const noexcept final { return reason; }
+  ~bad_input() noexcept final{ // NOLINT
+    //destructor should possibly not throw any exceptions
+  }
 };
 }
-#pragma clang diagonistic pop
+
+#endif //CAR_WORKSHOP_BAD_INPUT_H

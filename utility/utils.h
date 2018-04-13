@@ -17,7 +17,9 @@
 #define CAR_WORKSHOP_UTILS_H
 
 #include <cstring>
+#include <vector>
 #include "datetime.h"
+#include "../base/order.h"
 #define CONFIG_FILE_NAME ".config"
 
 namespace helper {
@@ -33,6 +35,8 @@ struct utils {
   static void re_authenticate();
   static void _exit();
   static void clear_screen();
+  static void show_from_vector(const std::vector<financial::order> &vector);
+  static void modify_present_and_save(const std::vector<financial::order> &vector, int t);
 };
 
 struct config { // NOLINT
@@ -48,7 +52,7 @@ struct config { // NOLINT
 class data_register {
   data_register() = default;
  public:
-  int total_completed = -1, total_pending = -1;
+  int total_completed = 0, total_order = 0;
   static data_register get_data_register_instance();
 };
 
@@ -60,6 +64,7 @@ struct ui {
     static void take_order();
     static void modify_order();
     static void show_all();
+    static void look_order();
   };
 };
 }

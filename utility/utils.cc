@@ -17,25 +17,27 @@
 #include <fstream>
 #include <iomanip>
 #include <thread>
+#include <cassert>
 #include "utils.h"
 #include "../file_helper/writer.h"
 #include "../file_helper/reader.h"
 #include "../file_helper/writer.cc"
 #include "../file_helper/reader.cc"
 #include "../base/order.h"
+#include "../base/bad_input.h"
 
 using namespace helper;
 
 data_register data_register::get_data_register_instance() {
   try {
-    std::unique_ptr<reader<financial::order>> reader1(new reader<financial::order>(PAST_ORDERS_NAME, true));
+    std::unique_ptr<reader<financial::order>> reader1(new reader<financial::order>(ALL_ORDERS_NAME, true));
     std::unique_ptr<reader<financial::order>> reader2(new reader<financial::order>(ACTIVE_ORDERS_NAME, true));
     std::vector<financial::order> vector, vector1;
     reader1->read_all(vector);
     reader2->read_all(vector1);
     data_register dataRegister;
-    dataRegister.total_completed = static_cast<int>(vector.size());
-    dataRegister.total_pending = static_cast<int>(vector1.size());
+    dataRegister.total_completed = static_cast<int>(vector1.size() / 2);
+    dataRegister.total_order = static_cast<int>(vector.size() / 2);
     return dataRegister;
   } catch (std::runtime_error &e) {
     //NO SUCH FILE OR DIRECTORY FOUND
@@ -135,7 +137,6 @@ void utils::restore_and_delete_config() {
   exit(0);
 }
 void utils::start_menu_run() {
-
   file::reader<config> *reader1 = new file::reader<config>(CONFIG_FILE_NAME, true);
   config c = reader1->read(1);
   delete reader1;
@@ -182,6 +183,67 @@ void utils::_exit() {
   exit(0);
 
 }
+void utils::show_from_vector(const std::vector<financial::order> &vector) {
+  using namespace std;
+  if (vector.empty()) {
+    cout << "No Data Found.. Redirecting to Main Menu in 2 sec";
+    this_thread::sleep_for(chrono::seconds(2));
+    utils::start_menu_run();
+  } else {
+    utils::clear_screen();
+    cout << "Hint : Press any key to view next item or 0 to leave";
+    int key = 1; //some dummy init
+    int index = 0;
+    while (key != 0 && index < vector.size()) {
+      clear_screen();
+      financial::order r = vector[index];
+      index += 2; //fixme(coder3101) Some BUG is causing vector to include each object twice
+      r.generate_receipt();
+      cin >> key;
+    }
+    utils::start_menu_run();
+  }
+
+}
+void utils::modify_present_and_save(const std::vector<financial::order> &vector, int t) {
+  using namespace std;
+  cout << "\nWhat do you want to modify in the entry ?";
+  cout << "1. Order Status \t\t\t\t 2. Customer Name \n3.Change Problem map \t\t\t\t4. Color";
+  cout << "\n\nSelect the appropriate entry : ";
+  int t2;
+  cin >> t2;
+  bool changed_status = false;
+  if (t2 > 4 || t2 < 1) {
+    cerr << "Invalid Input : Nothing wll be changed...Redirecting to main menu\n";
+    this_thread::sleep_for(chrono::seconds(3));
+    utils::start_menu_run();
+  } else {
+    switch (t2) {
+      case 1 : vector[t].is_completed = !vector[t].is_completed;
+        changed_status = true;
+        break;
+      case 2 : break;
+      case 3 : break;
+      case 4 : break;
+      default:assert(false); //never should happen else crashes program
+    }
+
+    file::writer<financial::order> *writer_active = new file::writer<financial::order>(ACTIVE_ORDERS_NAME,true);
+    file::writer<financial::order> *writer_all = new file::writer<financial::order>(ALL_ORDERS_NAME,true);
+    file::writer<financial::order> *writer1_past = new file::writer<financial::order>(PAST_ORDERS_NAME,true);
+
+    //todo(coder3101) : Complete this last section and proceed
+    if(changed_status){
+
+    }
+    else{
+
+    }
+
+
+  }
+
+}
 
 void ui::show_main_menu(config c) {
   utils::clear_screen();
@@ -189,29 +251,26 @@ void ui::show_main_menu(config c) {
 
   data_register aRegister = data_register::get_data_register_instance();
   std::string s, s2;
-  if (aRegister.total_pending == -1 || aRegister.total_completed == -1) {
-    s = "N/A";
-    s2 = "N/A";
-  } else {
-    s = std::to_string(aRegister.total_completed);
-    s2 = std::to_string(aRegister.total_pending);
-  }
+
+  s = std::to_string(aRegister.total_completed);
+  s2 = std::to_string(aRegister.total_order);
   using namespace std;
   cout << setw(60) << "Welcome " << c.admin_name << endl << endl << endl;
   cout << setw(50) << "Last Login at : " << c.last_launch.get_date_timestamp() << " by " << c.admin_name << endl << endl
        << endl;
-  cout << setw(66) << "Active Orders : " << s2 << endl;
-  cout << setw(67) << "Pending Orders  : " << s << endl << endl << endl;
+  cout << setw(68) << "Active Orders : " << s << endl;
+  cout << setw(68) << "Total Orders  : " << s2 << endl << endl << endl;
   cout << setw(70) << "1. Take a new Order" << endl;
   cout << setw(70) << "2. Modify the Order" << endl;
   cout << setw(70) << "3. Show  all  Order" << endl;
-  cout << setw(70) << "4. Settings & Utils" << endl;
-  cout << setw(70) << "5. Save  and   Exit" << endl;
+  cout << setw(70) << "4. Order  to  Look " << endl;
+  cout << setw(70) << "5. Settings & Utils" << endl;
+  cout << setw(70) << "6. Save  and   Exit" << endl;
   cout << endl << endl << "Press respective keys to perform ops : ";
   size_t x = 0;
   while (!x) {
     cin >> x;
-    if (x > 5) {
+    if (x > 6) {
       x = 0;
       cout << "\nOops Unrecognized. Retry : ";
     } else {
@@ -227,9 +286,16 @@ void ui::launch_option(int x) {
       break;
     case 3 : ui::options::show_all();
       break;
-    case 4 : ui::options::settings_and_utils();
+    case 4 :
+      try { ui::options::look_order(); } catch (std::runtime_error &e) {
+        std::cerr << "\nYou must take some order before looking for them. Redirecting to main menu..";
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        utils::start_menu_run();
+      }
       break;
-    case 5 : utils::_exit();
+    case 5 : ui::options::settings_and_utils();
+      break;
+    case 6 : utils::_exit();
       break;
     default:std::cerr << std::setw(60) << "Unknown Option : Exiting";
       utils::_exit();
@@ -279,9 +345,7 @@ void ui::options::settings_and_utils() {
       std::system((std::string("del ") + std::string(ACTIVE_ORDERS_NAME)).c_str());
 
 #else
-      std::system((std::string("rm -rf ") + std::string(ACTIVE_ORDERS_NAME)).c_str());
-      std::system((std::string("rm -rf ") + std::string(PAST_ORDERS_NAME)).c_str());
-      std::system((std::string("rm -rf ") + std::string(ACTIVE_ORDERS_NAME)).c_str());
+      std::system("rm -rf *.db");
 
 #endif
       utils::_exit();
@@ -299,69 +363,156 @@ void ui::options::settings_and_utils() {
 }
 void ui::options::take_order() {
   utils::clear_screen();
-  financial::order new_order = financial::order::create_new_order();
-  std::cout << "Are you sure you want to add this order : ";
-  std::string s;
-  std::cin >> s;
-  //fixme(coder3101) This is driving me crazy. Fixme soon...
-  if (s == "yes") {
+  try {
+    financial::order new_order = financial::order::create_new_order();
+    std::cout << "Are you sure you want to add this order : ";
+    std::string s;
+    std::cin >> s;
+    if (s == "yes") {
 
-    std::vector<financial::order> all_active, all_order;
-    try {
-      file::reader<financial::order> *reader1 = new file::reader<financial::order>(ACTIVE_ORDERS_NAME, true);
-      //file::reader<financial::order> *reader2 = new file::reader<financial::order>(ALL_ORDERS_NAME, true);
+      std::vector<financial::order> all_active, all_order;
+      try {
+        file::reader<financial::order> *reader1 = new file::reader<financial::order>(ACTIVE_ORDERS_NAME, true);
+        file::reader<financial::order> *reader2 = new file::reader<financial::order>(ALL_ORDERS_NAME, true);
 
-      reader1->read_all(all_active);
-      //reader2->read_all(all_order);
+        reader1->read_all(all_active);
+        reader2->read_all(all_order);
 
-      std::cout<<"Reading size for active : "<<all_active.size();
+        delete reader1;
+        delete reader2;
 
-      delete reader1;
-      //delete reader2;
+      } catch (std::runtime_error &e) {
+        //ignore it simple means this is first install
+      }
 
-    }catch (std::runtime_error &e){
-      //ignore it simple means this is first install
+      all_active.push_back(new_order);
+      all_order.push_back(new_order);
+
+      file::writer<financial::order> *writer1 = new file::writer<financial::order>(ACTIVE_ORDERS_NAME, true);
+      file::writer<financial::order> *writer2 = new file::writer<financial::order>(ALL_ORDERS_NAME, true);
+
+      writer1->write_all(all_active);
+      writer2->write_all(all_order);
+
+      delete writer1;
+      delete writer2;
+
+      std::cout << "\n\nThe Order was saved and will be visible soon...";
+
+      //Equivalent for delay from dos.h
+      std::this_thread::sleep_for(std::chrono::seconds(2));
+      utils::start_menu_run();
+
+    } else {
+      utils::start_menu_run();
     }
-
-    std::cout<<"size for active before push_back : "<<all_active.size();
-
-
-    //all_active.push_back(new_order);
-    all_order.push_back(new_order);
-
-    std::cout<<"size for active  after push_back: "<<all_active.size();
-
-
-    file::writer<financial::order> *writer1 = new file::writer<financial::order>(ACTIVE_ORDERS_NAME, true);
-    //file::writer<financial::order> *writer2 = new file::writer<financial::order>(ALL_ORDERS_NAME, true);
-
-    writer1->write_all(all_active);
-    //writer2->write_all(all_order);
-
-    delete writer1;
-    //delete writer2;
-
-    std::cout << "\n\nThe Order was saved and will be visible soon...";
-
-    //Equivalent for delay from dos.h
-    std::this_thread::sleep_for(std::chrono::seconds(2));
-    utils::start_menu_run();
-
-  } else {
+  } catch (error::bad_input &e) {
+    std::cerr << "Invalid input : Reason --> " << e.what();
+    std::this_thread::sleep_for(std::chrono::seconds(3));
     utils::start_menu_run();
   }
 
 }
 void ui::options::modify_order() {
+  utils::clear_screen();
+  using namespace std;
+  string target;
+  cout << setw(50) << "Enter the Car Number to look for : ";
+  cin >> target;
+  file::reader<financial::order> *ptr = new file::reader<financial::order>(ACTIVE_ORDERS_NAME, true);
+  vector<financial::order> vector1;
+  ptr->read_all(vector1);
+  delete ptr;
+  bool found = false;
+  for (int t = 0; t < vector1.size(); t++) {
+    if (target == vector1[t].get_problem_map().get_number()) {
+      found = true;
+      utils::modify_present_and_save(vector1, t);
+      break;
+    }
+  }
+  if (!found) {
+    cerr << "No such car is in the workshop. Car Number looked for : " << target << "\nRedirecting to main menu in 3s";
+    this_thread::sleep_for(chrono::seconds(3));
+    utils::start_menu_run();
+  }
 
 }
 void ui::options::show_all() {
-  std::vector<financial::order> orders;
-  file::reader<financial::order> *reader1 = new file::reader<financial::order>(ACTIVE_ORDERS_NAME, true);
-  reader1->read_all(orders);
-  delete reader1;
-  //todo(coder3101) implement this
-  for(financial::order &e : orders){
-    std::cout<<e.get_problem_map().get_manufacturer_name()<<"\n";
+  utils::clear_screen();
+  using namespace std;
+  cout << setw(72) << "Showing All Orders\n\n";
+  cout << setw(70)
+       << "Choose view type : \n\t\t\t\t1. View only Completed orders \n\t\t\t\t2. View all the orders \n\t\t\t\t3. Back";
+  cout << "\nYour choice : ";
+  int s;
+  cin >> s;
+  if (s > 3 || s < 0) {
+    cout << "\n\nA bad value provided\n\n\n";
+    this_thread::sleep_for(chrono::seconds(1));
+    utils::start_menu_run();
+  } else {
+    if (s == 3) utils::start_menu_run();
+    if (s == 2) {
+      try {
+        std::vector<financial::order> orders;
+        file::reader<financial::order> *reader1 = new file::reader<financial::order>(ALL_ORDERS_NAME, true);
+        reader1->read_all(orders);
+        delete reader1;
+        utils::show_from_vector(orders);
+
+      } catch (std::runtime_error &ignore) {
+        cerr
+            << "\n\nEither Database file is missing or no order was created (for total order)... Moving to Main Menu\n\n";
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        utils::start_menu_run();
+      };
+    }
+    if (s == 1) {
+      try {
+        std::vector<financial::order> orders;
+        file::reader<financial::order> *reader1 = new file::reader<financial::order>(PAST_ORDERS_NAME, true);
+        reader1->read_all(orders);
+        delete reader1;
+        utils::show_from_vector(orders);
+      } catch (std::runtime_error &w) {
+        cerr
+            << "\n\nEither Database file is missing or no order has been completed till this date (for past order)... Moving to Main Menu\n\n";
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        utils::start_menu_run();
+      }
+    }
   }
+}
+void ui::options::look_order() {
+  utils::clear_screen();
+  using namespace std;
+  string target;
+  cout << setw(50) << "Enter the Car Number to look for : ";
+  cin >> target;
+  file::reader<financial::order> *ptr = new file::reader<financial::order>(ACTIVE_ORDERS_NAME, true);
+  vector<financial::order> vector1;
+  ptr->read_all(vector1);
+  delete ptr;
+  bool found = false;
+  for (financial::order &r : vector1) {
+    if (target == r.get_problem_map().get_number()) {
+      found = true;
+      cout << endl;
+      r.generate_receipt();
+      cout << "\n\nEnter Any Key to go back to last menu.";
+      break;
+    }
+  }
+  if (!found) {
+    cerr << "No such car is in the workshop. Car Number looked for : " << target << "\nRedirecting to main menu in 3s";
+    this_thread::sleep_for(chrono::seconds(3));
+    utils::start_menu_run();
+  } else {
+    int s;
+    cin >> s; //dummy entry get in not here.
+    cin.clear(); //just reset the buffer state to original just in case user entered something else apart from int.
+    utils::start_menu_run();
+  }
+
 }
