@@ -36,7 +36,7 @@ struct utils {
   static void _exit();
   static void clear_screen();
   static void show_from_vector(const std::vector<financial::order> &vector);
-  static void modify_present_and_save(const std::vector<financial::order> &vector, int t);
+  static void modify_present_and_save(std::vector<financial::order> &vector, int t);
 };
 
 struct config { // NOLINT

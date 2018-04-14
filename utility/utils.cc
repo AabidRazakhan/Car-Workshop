@@ -17,7 +17,6 @@
 #include <fstream>
 #include <iomanip>
 #include <thread>
-#include <cassert>
 #include "utils.h"
 #include "../file_helper/writer.h"
 #include "../file_helper/reader.h"
@@ -197,7 +196,8 @@ void utils::show_from_vector(const std::vector<financial::order> &vector) {
     while (key != 0 && index < vector.size()) {
       clear_screen();
       financial::order r = vector[index];
-      index += 2; //fixme(coder3101) Some BUG is causing vector to include each object twice
+      index +=
+          2; //fixme(coder3101) Some BUG is causing vector to include each object twice: Not my issue maybe inheritance is causing this or too large size of order
       r.generate_receipt();
       cin >> key;
     }
@@ -205,41 +205,74 @@ void utils::show_from_vector(const std::vector<financial::order> &vector) {
   }
 
 }
-void utils::modify_present_and_save(const std::vector<financial::order> &vector, int t) {
+
+void utils::modify_present_and_save(std::vector<financial::order> &vector, int t) {
   using namespace std;
   cout << "\nWhat do you want to modify in the entry ?";
-  cout << "1. Order Status \t\t\t\t 2. Customer Name \n3.Change Problem map \t\t\t\t4. Color";
+  cout << "\n1. Order Status \t\t\t\t 2. Back";
   cout << "\n\nSelect the appropriate entry : ";
   int t2;
   cin >> t2;
-  bool changed_status = false;
-  if (t2 > 4 || t2 < 1) {
-    cerr << "Invalid Input : Nothing wll be changed...Redirecting to main menu\n";
+  if (t2 > 2 || t2 < 1) {
+    cerr << "Invalid Input : Nothing will be changed...Redirecting to main menu\n";
     this_thread::sleep_for(chrono::seconds(3));
     utils::start_menu_run();
   } else {
+
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "missing_default_case"
     switch (t2) {
-      case 1 : vector[t].is_completed = !vector[t].is_completed;
-        changed_status = true;
+      case 1: {
+        cout << "\nAre you sure to mark the order as completed (yes/no) : ";
+        std::string ch;
+        cin >> ch;
+        if (ch == "yes") {
+          vector[t].is_completed = true;
+          vector[t + 1].is_completed = true;
+          std::vector<financial::order> older;
+          try {
+            file::reader<financial::order> *old = new file::reader<financial::order>(PAST_ORDERS_NAME, true);
+            old->read_all(older);
+            delete old;
+          } catch (...) {}
+          file::writer<financial::order> *past = new file::writer<financial::order>(PAST_ORDERS_NAME, true);
+          older.push_back(vector[t]);
+          vector.erase(vector.begin() + t);
+          vector.erase(vector.begin() + t + 1);
+          file::writer<financial::order> *active = new file::writer<financial::order>(ACTIVE_ORDERS_NAME, true);
+          file::writer<financial::order> *all = new file::writer<financial::order>(ALL_ORDERS_NAME, true);
+          std::vector<financial::order> temp;
+          temp.reserve(older.size() + vector.size());
+          temp.insert(temp.end(), vector.begin(), vector.end());
+          temp.insert(temp.end(), older.begin(), older.end());
+          past->write_all(older);
+          all->write_all(temp);
+          active->write_all(vector);
+
+          delete past;
+          delete all;
+          delete active;
+
+          cout << "\nOrder status changed.. Redirecting to main menu";
+          std::this_thread::sleep_for(chrono::seconds(3));
+          utils::start_menu_run();
+          break;
+
+        } else {
+          cout << "\n\nAborting change status... Redirecting to main menu";
+          this_thread::sleep_for(chrono::seconds(3));
+          utils::start_menu_run();
+          break;
+          //fixme(coder3101) : It will be good to fix {this} issue but i wont fix this time
+          //{this} : Moving order from active to past does  not removes order from active at
+        }
+      }
+      case 2: {
+        utils::start_menu_run();
         break;
-      case 2 : break;
-      case 3 : break;
-      case 4 : break;
-      default:assert(false); //never should happen else crashes program
+      }
     }
-
-    file::writer<financial::order> *writer_active = new file::writer<financial::order>(ACTIVE_ORDERS_NAME,true);
-    file::writer<financial::order> *writer_all = new file::writer<financial::order>(ALL_ORDERS_NAME,true);
-    file::writer<financial::order> *writer1_past = new file::writer<financial::order>(PAST_ORDERS_NAME,true);
-
-    //todo(coder3101) : Complete this last section and proceed
-    if(changed_status){
-
-    }
-    else{
-
-    }
-
+#pragma clang diagnostic pop
 
   }
 
@@ -424,7 +457,7 @@ void ui::options::modify_order() {
   ptr->read_all(vector1);
   delete ptr;
   bool found = false;
-  for (int t = 0; t < vector1.size(); t++) {
+  for (int t = 0; t < vector1.size(); t++) { //returns first occupancy of target, next is also a target
     if (target == vector1[t].get_problem_map().get_number()) {
       found = true;
       utils::modify_present_and_save(vector1, t);
