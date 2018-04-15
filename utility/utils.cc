@@ -205,7 +205,6 @@ void utils::show_from_vector(const std::vector<financial::order> &vector) {
   }
 
 }
-
 void utils::modify_present_and_save(std::vector<financial::order> &vector, int t) {
   using namespace std;
   cout << "\nWhat do you want to modify in the entry ?";
