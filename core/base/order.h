@@ -18,7 +18,7 @@
 #ifndef CAR_WORKSHOP_ORDER_H
 #define CAR_WORKSHOP_ORDER_H
 #include <stdexcept>
-#include "../utility/datetime.h"
+#include "datetime.h"
 #include "vehicle.h"
 #include "problem_map.h"
 

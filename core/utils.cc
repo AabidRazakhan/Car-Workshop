@@ -17,20 +17,15 @@
 #include <fstream>
 #include <iomanip>
 #include <thread>
+#include <iostream>
 #include "utils.h"
-#include "../file_helper/writer.h"
-#include "../file_helper/reader.h"
-#include "../file_helper/writer.cc"
-#include "../file_helper/reader.cc"
-#include "../base/order.h"
-#include "../base/bad_input.h"
 
 using namespace helper;
 
 data_register data_register::get_data_register_instance() {
   try {
-    std::unique_ptr<reader<financial::order>> reader1(new reader<financial::order>(ALL_ORDERS_NAME, true));
-    std::unique_ptr<reader<financial::order>> reader2(new reader<financial::order>(ACTIVE_ORDERS_NAME, true));
+    std::unique_ptr <file::reader<financial::order> > reader1(new file::reader<financial::order>(ALL_ORDERS_NAME, true));
+    std::unique_ptr <file::reader<financial::order> > reader2(new file::reader<financial::order>(ACTIVE_ORDERS_NAME, true));
     std::vector<financial::order> vector, vector1;
     reader1->read_all(vector);
     reader2->read_all(vector1);
